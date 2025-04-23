@@ -1,0 +1,6 @@
+This is just testing
+Alter Table:
+Add a new column linkedin_profile to employees table to store LinkedIn URLs as varchar.
+Change the linkedin_profile column data type from VARCHAR to TEXT.
+Add unique, not null constraint to linkedin_profile
+Drop column linkedin_profile
