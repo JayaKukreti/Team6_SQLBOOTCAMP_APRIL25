@@ -10,8 +10,8 @@ alter table employees
 alter column linkedin_profile type text;
 
  --Add unique, not null constraint to linkedin_profile
---alter table employees
---alter column linkedin_profile set not null;check
+alter table employees
+alter column linkedin_profile set not null;check
 
 alter table employees 
 ADD CONSTRAINT unique_linkedin_profile UNIQUE (linkedin_profile);
