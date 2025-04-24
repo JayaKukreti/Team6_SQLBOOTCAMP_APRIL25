@@ -1,0 +1,61 @@
+CREATE TABLE IF NOT EXISTS public.customers
+(
+    customerid character varying(5) COLLATE pg_catalog."default" NOT NULL,
+    companyname character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    contactname character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    contacttitle character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    city character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    country text COLLATE pg_catalog."default",
+    CONSTRAINT customers_pkey PRIMARY KEY (customerid)
+)
+
+CREATE TABLE IF NOT EXISTS public.employees
+(
+    "employeeID" integer NOT NULL,
+    "employeeName" character varying COLLATE pg_catalog."default" NOT NULL,
+    title character varying COLLATE pg_catalog."default" NOT NULL,
+    city character varying COLLATE pg_catalog."default" NOT NULL,
+    country character varying COLLATE pg_catalog."default" NOT NULL,
+    "reportsTo" integer,
+    CONSTRAINT employees_pkey PRIMARY KEY ("employeeID")
+)
+
+CREATE TABLE IF NOT EXISTS public.order_detail
+(
+    "orderID" integer NOT NULL,
+    "productID" integer NOT NULL,
+    "unitPrice" numeric NOT NULL,
+    quantity integer,
+    discount numeric
+)
+
+CREATE TABLE IF NOT EXISTS public.orders
+(
+    orderid integer NOT NULL,
+    customerid character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    employeeid integer NOT NULL,
+    orderdate date,
+    requireddate date,
+    shippeddate date,
+    shipperid integer,
+    freight numeric(7,2),
+    CONSTRAINT orders_pkey PRIMARY KEY (orderid)
+)
+
+CREATE TABLE IF NOT EXISTS public.products
+(
+    "productID" integer NOT NULL,
+    "productName" character varying COLLATE pg_catalog."default" NOT NULL,
+    "quantityPerUnit" character varying COLLATE pg_catalog."default" NOT NULL,
+    "unitPrice" numeric NOT NULL,
+    discontinued boolean NOT NULL,
+    "categoryID" integer NOT NULL,
+    CONSTRAINT products_pkey PRIMARY KEY ("productID")
+)
+
+CREATE TABLE IF NOT EXISTS public.shippers
+(
+    "shipperID" integer NOT NULL,
+    "companyName" character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT shippers_pkey PRIMARY KEY ("shipperID")
+)
