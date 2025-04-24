@@ -44,7 +44,7 @@ where country='France'or country='Spain';
 --Retrieve all orders placed in 1997 (based on order_date), and either have freight greater than 50 or the shipped date available (i.e., non-NULL)  (Hint: EXTRACT(YEAR FROM order_date))
 
 select orderID from orders
-where extract(year from orderDate)=1997
+where extract(year from orderDate)=2014
 and (freight>50 or shippedDate is not null);
 
                                    --4.Filtering
