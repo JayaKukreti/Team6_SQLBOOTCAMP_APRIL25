@@ -52,4 +52,19 @@ WITH CTE_PRODUCT_PRICECAT AS
 SELECT price_category,count(*) as product_count_in_category, round(avg(unit_price)::numeric,2)as avg_price
 FROM CTE_PRODUCT_PRICECAT group by price_category;
 
+-- 4.     Create a recursive CTE based on Employee Hierarchy
+
+select employee_id,first_name,title,reports_to from employees;
+
+with recursive cte_employee_hierarchy as (
+	select employee_id,first_name,title,reports_to 
+	from employees e
+	where employee_id =2
+	UNION
+	select e.employee_id,e.first_name,e.title,e.reports_to 
+	from cte_employee_hierarchy eh
+	join employees e on eh.employee_id = e.reports_to
+)
+select * from cte_employee_hierarchy;
+
 			
