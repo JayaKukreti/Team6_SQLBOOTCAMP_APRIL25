@@ -48,6 +48,18 @@ select e.Employee_id,
 	   
 select * from vw_employee_territory;
 
-4.     Create a recursive CTE based on Employee Hierarchy
+-- 4.     Create a recursive CTE based on Employee Hierarchy
 
+select employee_id,first_name,title,reports_to from employees;
+
+with recursive cte_employee_hierarchy as (
+	select employee_id,first_name,title,reports_to 
+	from employees e
+	where employee_id =2
+	UNION
+	select e.employee_id,e.first_name,e.title,e.reports_to 
+	from cte_employee_hierarchy eh
+	join employees e on eh.employee_id = e.reports_to
+)
+select * from cte_employee_hierarchy;
 
